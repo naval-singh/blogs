@@ -1,0 +1,75 @@
+<%- include("../partials/header") %>
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8">
+
+            <!-- title -->
+            <h2  class="mt-1 justify"><%= blog.title %></h2>
+
+            <!-- author -->
+            <p class="lead">
+                by
+                <a href="#"><%= blog.author.name %></a>
+            </p>
+            <hr>
+
+            <!-- date/time -->
+            <p>Posted on <%= blog.created.toDateString()%></p>
+            <hr>
+
+            <!-- image -->
+            <img class="img-fluid rounded" src="<%= blog.image %>">
+            <hr>
+
+            <!-- page content -->
+            <p class="lead justify">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus, vero, obcaecati, aut, error quam sapiente nemo saepe quibusdam sit excepturi nam quia corporis eligendi eos magni recusandae laborum minus inventore?</p>
+            <div class="justify">
+                <%- blog.content %>
+            </div>
+            <% if(currentUser && blog.author.id.equals(currentUser._id)){ %>
+                <div class="text-right">
+                    <a class="btn btn-warning btn-sm" href="/blogs/<%= blog._id %>/edit">Edit</a>
+                    <form class="inline" action="/blogs/<%= blog._id %>?_method=DELETE" method="POST">
+                        <button class="btn btn-danger btn-sm">Delete</button>
+                    </form>
+                </div>
+            <% } %>
+            <hr>
+
+            <!-- comments form -->
+            <div class="card my-4">
+                <h5 class="card-header">Leave a Comment:</h5>
+                <div class="card-body">
+                    <form action="/blogs/<%= blog._id %>/comments" method="POST">
+                        <div class="form-group">
+                            <textarea class="form-control" name="text" rows="3" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- show comments -->
+            <% blog.comments.forEach(function(comment){ %>
+                <div class="media mb-4">
+                    <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
+                    <div class="media-body">
+                        <h5 class="mt-0"><%= comment.author.name %></h5>
+                        <p><%= comment.text %></p>
+                        <% if(currentUser && comment.author.id.equals(currentUser._id)){ %>
+                            <a class="btn btn-warning btn-sm p-0" href="/blogs/<%= blog._id %>/comments/<%= comment._id %>/edit">Edit</a>
+                            <form class="inline" action="/blogs/<%= blog._id %>/comments/<%= comment._id %>?_method=DELETE" method="POST">
+                                <button class="btn btn-danger btn-sm p-0">Delete</button>
+                            </form>
+                        <% } %>
+                    </div>
+                </div>
+            <% }) %>
+
+        </div>
+        <%- include("../partials/sidebar") %>
+    </div>
+</div>
+
+<%- include("../partials/footer") %>

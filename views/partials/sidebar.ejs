@@ -1,0 +1,29 @@
+<div class="col-md-4">
+    <!-- search bar -->
+    <div class="card bg-light mb-3">
+        <div class="card-header">Search</div>
+        <div class="card-body">
+            <div class="form-group inline">
+                <input class="form-control" type="text" placeholder="Search here...">
+            </div>
+        </div>
+    </div>
+
+    <!-- categories bar -->
+    <div class="card bg-light mb-3">
+        <div class="card-header">Categories</div>
+        <div class="card-body">
+            <div class="row">
+                <% categories.forEach(function(category){ %>
+                    <div class="col-lg-6">
+                        <li class="category-list">
+                            <a class="card-link" href="/blogs/find?value=<%= category.category %>">
+                                <%= category.category %>
+                            </a>
+                        </li>
+                    </div>
+                    <% }) %>
+            </div>
+        </div>
+    </div>
+</div>

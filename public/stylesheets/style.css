@@ -1,0 +1,29 @@
+body{
+  margin-top: 3rem;
+  padding-top: 2rem;
+}
+
+#mainNavbar .navbar-brand{
+  font-size: 1.5rem;
+}
+
+#mainNavbar li a{
+  color: rgba(255,255,255,.5);
+}
+
+#mainNavbar li a:hover{
+  background-color: #343a40;
+  color: #fff;
+}
+
+.justify{
+  text-align: justify;
+}
+
+.inline{
+  display: inline;
+}
+
+.category-list{
+  list-style: none;
+}

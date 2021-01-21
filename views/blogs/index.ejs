@@ -1,0 +1,30 @@
+<%- include("../partials/header") %>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+            <h1 class="mb-3"><%= findCategory %> Feeds</h1>
+            <div class="row">
+                <% blogs.forEach(function(blog){ %>
+                    <div class="col-lg-6">
+                        <div class="card mb-5">
+                            <img class="card-img-top" src="<%= blog.image %>">
+                            <div class="card-body">
+                                <h5 class="card-title justify"><%= blog.title.substring(0,60) %>...</h5>
+                                <p class="card-text justify"><%= blog.content.substring(3,150) %>...</p>
+                                <a class="btn btn-primary" href="/blogs/<%= blog._id %>">Read more &rarr;</a>
+                            </div>
+                            <div class="card-footer text-muted">
+                                Posted on <%= blog.created.toDateString() %>
+                                by <a href="#"><%= blog.author.name %></a>
+                            </div>
+                        </div>
+                    </div>
+                <% }) %>
+            </div>
+        </div>
+        <%- include("../partials/sidebar") %>
+    </div>
+</div>
+
+<%- include("../partials/footer") %>

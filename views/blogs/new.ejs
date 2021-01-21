@@ -1,0 +1,23 @@
+<%- include("../partials/header") %>
+
+
+<h1 class="text-center">New blog</h1>
+<div class="container" style="max-width: 400px; margin: 30px auto;">
+    <form action="/blogs" method="POST">
+        <div class="form-group">
+            <input class="form-control" type="text" name="title" placeholder="title" required>
+        </div>
+        <div class="form-group">
+            <input class="form-control" type="text" name="image" placeholder="image" required>
+        </div>
+        <div class="form-group">
+            <select id="category" class="form-control" name="category" required></select>
+        </div>
+        <div class="form-group">
+            <textarea class="form-control" name="content" rows="6" placeholder="Description goes here..." required></textarea> 
+        </div>
+        <input class="btn btn-outline-primary btn-block" type="submit">
+    </form>
+</div>
+
+<%- include("../partials/footer") %>
